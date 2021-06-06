@@ -13,6 +13,14 @@ export default function BlogNavbar() {
           <Nav.Link className='fj-navbar-item fj-navbar-link' href='/'>
             Home
           </Nav.Link>
+          <Nav.Link className='fj-navbar-item fj-navbar-link' href='#'>
+            {process.env.NODE_ENV === "development" && (
+              <span className='envDev'>✘ DEV</span>
+            )}
+            {process.env.NODE_ENV === "production" && (
+              <span className='envProd'>✔ PROD</span>
+            )}
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
