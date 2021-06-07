@@ -4,13 +4,19 @@ import PageLayout from "components/PageLayout";
 import AuthorIntro from "components/AuthorIntro";
 import CardListItem from "components/CardListItem";
 import CardItem from "components/CardItem";
+import { getAllBlogs } from "lib/api";
 
-export default function HomePage() {
+export default function HomePage(props) {
+  const { blogs } = props;
+  // console.log(blogs);
+  // debugger;
+
   return (
     <PageLayout>
       <div className='blog-detail-page'>
         <AuthorIntro />
         <hr />
+        {JSON.stringify(blogs)}
         {/* className from props */}
         {/* <div className={`page-wrapper`}> */}
         <Row className='mb-5'>
@@ -25,6 +31,18 @@ export default function HomePage() {
       </div>
     </PageLayout>
   );
+}
+
+// This function is called during the build (build time)
+// Provides props to your page
+// It will create static page
+export async function getStaticProps() {
+  const blogs = await getAllBlogs();
+  return {
+    props: {
+      blogs,
+    },
+  };
 }
 
 // // _rfc
