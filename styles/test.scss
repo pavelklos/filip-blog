@@ -1,10 +1,15 @@
 nav,
 footer {
-  border: 2px solid rgba(0, 128, 0, 0.25);
+  border: 2px solid rgba(0, 128, 0, 0.125);
 }
 .container {
-  border: 2px solid rgba(220, 20, 60, 0.25);
+  border: 2px solid rgba(220, 20, 60, 0.125);
 }
 .blog-detail-page {
-  border: 2px solid rgba(0, 0, 255, 0.25);
+  border: 2px solid rgba(0, 0, 255, 0.125);
+}
+.admin-intro,
+.fj-card,
+.fj-card-list {
+  border: 2px solid orange;
 }
