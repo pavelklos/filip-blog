@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/index.scss";
-import "../styles/test.scss";
+import "styles/index.scss";
+import "styles/test.scss";
 
 const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />;
 
