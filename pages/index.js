@@ -6,16 +6,23 @@ import CardListItem from "components/CardListItem";
 import CardItem from "components/CardItem";
 import { getAllBlogs } from "lib/api";
 
+import { useEffect } from "react";
+
 export default function HomePage(props) {
-  const { blogs } = props;
+  const { blogs, randomNumber } = props;
   // console.log(blogs);
   // debugger;
+  console.log("Hello World");
+  useEffect(() => {
+    console.log(blogs);
+  }, []);
 
   return (
     <PageLayout>
       <div className='blog-detail-page'>
         <AuthorIntro />
         <hr />
+        <h1>{randomNumber}</h1>
         {/* {JSON.stringify(blogs)} */}
         {/* className from props */}
         {/* <div className={`page-wrapper`}> */}
@@ -44,14 +51,43 @@ export default function HomePage(props) {
 // Provides props to your page
 // It will create static page
 export async function getStaticProps() {
-  console.log("[index.js] Calling getStaticProps()");
+  console.log("[index.js] Calling ... `getStaticProps() : ●  (SSG)");
+  const randomNumber = Math.random();
   const blogs = await getAllBlogs();
   return {
     props: {
       blogs,
+      randomNumber,
     },
   };
 }
+
+// export async function getServerSideProps() {
+//   console.log("[index.js] Calling ... getServerSideProps() : λ  (Server)");
+//   const randomNumber = Math.random();
+//   const blogs = await getAllBlogs();
+//   return {
+//     props: {
+//       blogs,
+//       randomNumber,
+//     },
+//   };
+// }
+
+// *****************************************************************************
+// STATIC PAGE
+// *****************************************************************************
+// - Created at build time
+// - When we are making the request we are always receiving the same html document
+// - Faster, can be cached using CDN
+// - getStaticProps()
+// *****************************************************************************
+// DYNAMIC PAGE
+// *****************************************************************************
+// - Created at request time (we can fetch data on server)
+// - Little bit slower, the time depends on data you are fetching
+// - getServerSideProps()
+// *****************************************************************************
 
 // // _rfc
 // import {
