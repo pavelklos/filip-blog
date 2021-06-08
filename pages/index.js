@@ -16,13 +16,20 @@ export default function HomePage(props) {
       <div className='blog-detail-page'>
         <AuthorIntro />
         <hr />
-        {JSON.stringify(blogs)}
+        {/* {JSON.stringify(blogs)} */}
         {/* className from props */}
         {/* <div className={`page-wrapper`}> */}
         <Row className='mb-5'>
-          <Col md='10'>
+          {/* <Col md='10'>
             <CardListItem />
-          </Col>
+          </Col> */}
+
+          {blogs.map((blog) => (
+            <Col key={blog.slug} md='4'>
+              <CardItem {...blog} />
+            </Col>
+          ))}
+
           <Col md='4'>
             <CardItem />
           </Col>
@@ -37,6 +44,7 @@ export default function HomePage(props) {
 // Provides props to your page
 // It will create static page
 export async function getStaticProps() {
+  console.log("[index.js] Calling getStaticProps()");
   const blogs = await getAllBlogs();
   return {
     props: {
