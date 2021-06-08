@@ -2,7 +2,7 @@
 import { Card } from "react-bootstrap";
 
 export default function CardItem(props) {
-  const { title, subtitle, slug, coverImage, date } = props;
+  const { title, subtitle, slug, coverImage, date, author } = props;
   // console.log(coverImage);
 
   return (
@@ -19,7 +19,7 @@ export default function CardItem(props) {
           />
           <div>
             <Card.Title className='font-weight-bold mb-1'>
-              Placeholder Author
+              {author ? author._ref.substring(0, 8) : "Placeholder Author"}
             </Card.Title>
             <Card.Text className='card-date'>
               {new Date(date).toLocaleString()}
