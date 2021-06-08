@@ -2,14 +2,16 @@
 import { Card } from "react-bootstrap";
 
 export default function CardItem(props) {
-  const { title, subtitle, slug } = props;
+  const { title, subtitle, slug, coverImage, date } = props;
+  // console.log(coverImage);
 
   return (
     <Card className={`fj-card`}>
       <div className='card-body-wrapper'>
         <Card.Header className='d-flex flex-row'>
           <img
-            src={"https://via.placeholder.com/150"}
+            // src={"https://via.placeholder.com/150"}
+            src={coverImage || "https://via.placeholder.com/150"}
             className='rounded-circle mr-3'
             height='50px'
             width='50px'
@@ -19,12 +21,15 @@ export default function CardItem(props) {
             <Card.Title className='font-weight-bold mb-1'>
               Placeholder Author
             </Card.Title>
-            <Card.Text className='card-date'>Placeholder Date</Card.Text>
+            <Card.Text className='card-date'>
+              {new Date(date).toLocaleString()}
+            </Card.Text>
           </div>
         </Card.Header>
         <div className='view overlay'>
           <Card.Img
-            src='https://via.placeholder.com/250'
+            // src='https://via.placeholder.com/250'
+            src={coverImage || "https://via.placeholder.com/250"}
             alt='Card image cap'
           />
         </div>
