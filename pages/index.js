@@ -51,7 +51,7 @@ export default function HomePage(props) {
 // Provides props to your page
 // It will create static page
 export async function getStaticProps() {
-  console.log("[index.js] Calling ... `getStaticProps() : ●  (SSG)");
+  console.log("[index.js] Calling ... `getStaticProps() : ● (SSG)");
   const randomNumber = Math.random();
   const blogs = await getAllBlogs();
   return {
