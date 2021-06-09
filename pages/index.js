@@ -33,7 +33,7 @@ export default function HomePage(props) {
 
           {blogs.map((blog) => (
             <Col key={blog.slug} md='4'>
-              <CardItem {...blog} />
+              <CardItem {...blog} link={{ href: `/blogs/${blog.slug}` }} />
             </Col>
           ))}
 

@@ -1,8 +1,10 @@
 // _rfc
 import { Card } from "react-bootstrap";
+import Link from "next/link";
 
 export default function CardItem(props) {
   const { title, subtitle, slug, coverImage, date, author } = props;
+  const { link } = props;
   // console.log(coverImage);
 
   return (
@@ -38,7 +40,18 @@ export default function CardItem(props) {
           <Card.Text>{subtitle}</Card.Text>
         </Card.Body>
       </div>
-      <a className='card-button'>Read More</a>
+      {/* <a href={`/blogs/${slug}`} className='card-button'>
+        Read More
+      </a> */}
+      {/* <Link href='/blogs/[slug]' as={`/blogs/${slug}`}> */}
+      {/* <Link href={`/blogs/${slug}`}>
+        <a className='card-button'>Read More</a>
+      </Link> */}
+      {link && (
+        <Link {...link}>
+          <a className='card-button'>Read More</a>
+        </Link>
+      )}
     </Card>
   );
 }
