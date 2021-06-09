@@ -11,7 +11,7 @@ export default function CardItem(props) {
         <Card.Header className='d-flex flex-row'>
           <img
             // src={"https://via.placeholder.com/150"}
-            src={coverImage || "https://via.placeholder.com/150"}
+            src={author ? author.avatar : "https://via.placeholder.com/150"}
             className='rounded-circle mr-3'
             height='50px'
             width='50px'
@@ -19,10 +19,10 @@ export default function CardItem(props) {
           />
           <div>
             <Card.Title className='font-weight-bold mb-1'>
-              {author ? author._ref.substring(0, 8) : "Placeholder Author"}
+              {author ? author.name : "Placeholder Author"}
             </Card.Title>
             <Card.Text className='card-date'>
-              {new Date(date).toLocaleString()}
+              {date ? new Date(date).toLocaleString() : "Placeholder date"}
             </Card.Text>
           </div>
         </Card.Header>
