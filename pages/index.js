@@ -12,7 +12,7 @@ export default function HomePage(props) {
   const { blogs, randomNumber } = props;
   // console.log(blogs);
   // debugger;
-  console.log("Hello World");
+  // console.log("Hello World");
   useEffect(() => {
     console.log(blogs);
   }, []);
