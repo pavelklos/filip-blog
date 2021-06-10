@@ -1,7 +1,7 @@
 // _rfc
 import { useRouter } from "next/router";
 import PageLayout from "components/PageLayout";
-import { getBlogBySlug2 } from "lib/api";
+import { getAllBlogSlugs, getBlogBySlug2 } from "lib/api";
 
 export default function BlogDetailPage(props) {
   const router = useRouter();
@@ -23,12 +23,20 @@ export async function getStaticPaths() {
   console.log(
     "[[slug].js] Calling ... `getStaticPaths() : Gettings paths for every page"
   );
+  const slugs = await getAllBlogSlugs();
+  // console.log("slugs:", slugs);
+  // const paths = slugs?.map((s) => ({ params: { slug: s.slug } }));
+  // console.log("paths:", paths);
+
   return {
-    paths: [
-      { params: { slug: "my-first-blog" } },
-      { params: { slug: "my-second-blog" } },
-      { params: { slug: "my-third-blog" } },
-    ],
+    // paths: [
+    //   { params: { slug: "my-first-blog" } },
+    //   { params: { slug: "my-second-blog" } },
+    //   { params: { slug: "my-third-blog" } },
+    // ],
+    // paths: paths,
+    // paths,
+    paths: slugs?.map((s) => ({ params: { slug: s.slug } })),
     fallback: false, // false -> 404
   };
 }
@@ -40,6 +48,7 @@ export async function getStaticProps(context) {
 
   const blog = await getBlogBySlug2(slug);
   console.log("Fetching blog by slug:", slug);
+
   return {
     props: {
       blog,
