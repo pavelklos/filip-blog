@@ -1,7 +1,9 @@
 // _rfc
 import { useRouter } from "next/router";
 import PageLayout from "components/PageLayout";
+import BlogHeader from "components/BlogHeader";
 import { getAllBlogSlugs, getBlogBySlug2 } from "lib/api";
+import { Row, Col } from "react-bootstrap";
 
 export default function BlogDetailPage(props) {
   const router = useRouter();
@@ -9,12 +11,27 @@ export default function BlogDetailPage(props) {
   const { slug } = query;
   const { blog } = props;
   // debugger;
-  // console.log(blog);
+  console.log(blog);
   console.log("Displaying page for slug:", blog?.slug);
 
   return (
-    <PageLayout>
-      <h1>Blog Detail Page : {blog.title}</h1>
+    <PageLayout className='blog-detail-page'>
+      <Row>
+        <Col md={{ span: 10, offset: 1 }}>
+          <BlogHeader {...blog} />
+          <hr />
+          {/* Blog Content Here */}
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking at its layout. The point of
+          using Lorem Ipsum is that it has a more-or-less normal distribution of
+          letters, as opposed to using 'Content here, content here', making it
+          look like readable English. Many desktop publishing packages and web
+          page editors now use Lorem Ipsum as their default model text, and a
+          search for 'lorem ipsum' will uncover many web sites still in their
+          infancy. Various versions have evolved over the years, sometimes by
+          accident, sometimes on purpose (injected humour and the like).
+        </Col>
+      </Row>
     </PageLayout>
   );
 }

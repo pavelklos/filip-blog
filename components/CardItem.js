@@ -24,7 +24,9 @@ export default function CardItem(props) {
               {author ? author.name : "Placeholder Author"}
             </Card.Title>
             <Card.Text className='card-date'>
-              {date ? new Date(date).toLocaleString() : "Placeholder date"}
+              {date
+                ? new Date(date).toLocaleString("cs-CZ", {})
+                : "Placeholder date"}
             </Card.Text>
           </div>
         </Card.Header>
