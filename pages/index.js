@@ -14,7 +14,7 @@ export default function HomePage(props) {
   // debugger;
   // console.log("Hello World");
   useEffect(() => {
-    console.log(blogs);
+    // console.log(blogs);
   }, []);
 
   return (

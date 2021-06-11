@@ -31,8 +31,8 @@ export default function BlogDetailPage(props) {
   const { slug } = query;
   const { blog } = props;
   // debugger;
-  console.log(blog);
-  console.log("Displaying page for slug:", blog?.slug);
+  // console.log(blog);
+  // console.log("Displaying page for slug:", blog?.slug);
 
   return (
     <PageLayout className='blog-detail-page'>

@@ -1,6 +1,7 @@
 // _rfc
 import BlockContent from "@sanity/block-content-to-react";
 import HighlightCode from "components/HighlightCode";
+import { urlFor } from "lib/api";
 // const serializers = {
 //   types: {
 //     code: () => {
@@ -17,11 +18,21 @@ const serializers = {
     //   </pre>
     // ),
     code: ({ node: { language, code, filename } }) => {
+      // debugger
       return (
         <HighlightCode language={language}>
           {code}
           <div className='code-filename'>{filename}</div>
         </HighlightCode>
+      );
+    },
+    image: ({ node: { asset, alt } }) => {
+      // debugger
+      return (
+        <div className='blog-image'>
+          <img src={urlFor(asset).height(300).fit("max").url()} />
+          <div className='image-alt'>{alt}</div>
+        </div>
       );
     },
   },
@@ -32,7 +43,7 @@ export default function BlogContent({ content }) {
     <BlockContent
       blocks={content}
       serializers={serializers}
-      imageOptions={{ w: 320, h: 240, fit: "max" }}
+      // imageOptions={{ w: 320, h: 240, fit: "max" }}
     />
   );
 }

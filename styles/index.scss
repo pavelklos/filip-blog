@@ -341,13 +341,16 @@ body {
   color: green;
 }
 // ADDED : Portable Text 'block-content-to-react'
-figure img {
+figure img,
+.blog-image img {
   // width: 100%;
-  border: 2px solid;
+  border: 2px solid rgba(0, 0, 0, 1);
+  border-radius: 10px;
 }
 pre {
   // border: 2px solid;
 }
 code {
-  border: 2px solid rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(0, 0, 0, 1);
+  // border-radius: 10px;
 }
