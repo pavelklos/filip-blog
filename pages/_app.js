@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "highlight.js/styles/darcula.css";
+// import "highlight.js/styles/vs.css";
 import "styles/index.scss";
 import "styles/test.scss";
 
