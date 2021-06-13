@@ -26,7 +26,7 @@ const serializers = {
         </HighlightCode>
       );
     },
-    image: ({ node: { asset, alt } }) => {
+    image: ({ node: { asset, alt, position } }) => {
       // debugger
       return (
         <div className='blog-image'>
