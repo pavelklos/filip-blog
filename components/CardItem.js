@@ -6,7 +6,7 @@ import { urlFor } from "lib/api";
 export default function CardItem(props) {
   const { title, subtitle, slug, coverImage, date, author } = props;
   const { link } = props;
-  // console.log(coverImage);
+  console.log(coverImage);
 
   return (
     <Card className={`fj-card`}>
@@ -36,11 +36,9 @@ export default function CardItem(props) {
             // src='https://via.placeholder.com/250'
             src={
               coverImage
-                ? urlFor(coverImage)
-                    .height(300)
-                    .crop("center")
-                    .fit("clip")
-                    .url()
+                ? // urlFor(coverImage).height(300).url()
+                  // urlFor(coverImage).height(300).crop("center").fit("clip").url()
+                  urlFor(coverImage).url()
                 : "https://via.placeholder.com/250"
             }
             alt='Card image cap'

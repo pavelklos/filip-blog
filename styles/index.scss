@@ -372,3 +372,11 @@ code {
   border: 2px solid rgba(0, 0, 0, 1);
   // border-radius: 10px;
 }
+// CARD IMAGE
+.card-img {
+  // border: 2px solid rgba(0, 0, 0, 1);
+  border: 2px solid orange;
+  width: 100%;
+  height: 15rem;
+  object-fit: cover; // contain
+}
