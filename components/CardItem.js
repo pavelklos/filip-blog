@@ -1,6 +1,7 @@
 // _rfc
 import { Card } from "react-bootstrap";
 import Link from "next/link";
+import { urlFor } from "lib/api";
 
 export default function CardItem(props) {
   const { title, subtitle, slug, coverImage, date, author } = props;
@@ -33,7 +34,11 @@ export default function CardItem(props) {
         <div className='view overlay'>
           <Card.Img
             // src='https://via.placeholder.com/250'
-            src={coverImage || "https://via.placeholder.com/250"}
+            src={
+              coverImage
+                ? urlFor(coverImage).height(300).url()
+                : "https://via.placeholder.com/250"
+            }
             alt='Card image cap'
           />
         </div>

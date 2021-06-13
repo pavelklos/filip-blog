@@ -1,4 +1,5 @@
 // _rfc
+import { urlFor } from "lib/api";
 
 export default function BlogHeader({
   title,
@@ -28,9 +29,16 @@ export default function BlogHeader({
       </h1>
       <h2 className='blog-detail-header-subtitle mb-3'>{subtitle}</h2>
       {/* Check if contains cover image */}
+      <h5 className='warning'>Cover Image (16 : 9) @sanity/image-url</h5>
+      <h6 className='warning'>width(960).height(540)</h6>
       <img
         className='img-fluid rounded'
-        src={coverImage || coverImageTemp}
+        src={
+          coverImage
+            ? // ? urlFor(coverImage).height(400).url()
+              urlFor(coverImage).width(960).height(540).url() // 16 : 9
+            : coverImageTemp
+        }
         alt='TODO: provide alt'
       />
     </div>

@@ -1,12 +1,11 @@
 // _rfc
+import { useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import PageLayout from "components/PageLayout";
 import AuthorIntro from "components/AuthorIntro";
 import CardListItem from "components/CardListItem";
 import CardItem from "components/CardItem";
 import { getAllBlogs } from "lib/api";
-
-import { useEffect } from "react";
 
 export default function HomePage(props) {
   const { blogs, randomNumber } = props;
