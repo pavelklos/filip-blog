@@ -35,9 +35,9 @@ export default function BlogHeader({
         className='img-fluid rounded'
         src={
           coverImage
-            ? // ? urlFor(coverImage).height(400).url()
-              urlFor(coverImage).width(960).height(540).url() // 16 : 9
-            : coverImageTemp
+            ? urlFor(coverImage).height(400).url()
+            : // urlFor(coverImage).width(960).height(540).url() // 16 : 9
+              coverImageTemp
         }
         alt='TODO: provide alt'
       />
