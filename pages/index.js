@@ -1,13 +1,17 @@
 // _rfc
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import PageLayout from "components/PageLayout";
 import AuthorIntro from "components/AuthorIntro";
 import CardListItem from "components/CardListItem";
 import CardItem from "components/CardItem";
+import FilteringMenu from "components/FilteringMenu";
 import { getAllBlogs } from "lib/api";
 
 export default function HomePage(props) {
+  // filter.view.list === 0 : CARD VIEW
+  // filter.view.list === 1 : LIST VIEW
+  const [filter, setFilter] = useState({ view: { list: 0 } });
   const { blogs, randomNumber } = props;
   // console.log(blogs);
   // debugger;
@@ -20,6 +24,7 @@ export default function HomePage(props) {
     <PageLayout>
       <div className='blog-detail-page'>
         <AuthorIntro />
+        <FilteringMenu onChange={() => alert("alert from index.js")} />
         <hr />
         <h1>{randomNumber}</h1>
         {/* {JSON.stringify(blogs)} */}
@@ -30,11 +35,17 @@ export default function HomePage(props) {
             <CardListItem />
           </Col> */}
 
-          {blogs.map((blog) => (
-            <Col key={blog.slug} md='4'>
-              <CardItem {...blog} link={{ href: `/blogs/${blog.slug}` }} />
-            </Col>
-          ))}
+          {blogs.map((blog) =>
+            filter.view.list ? (
+              <Col md='9'>
+                <CardListItem />
+              </Col>
+            ) : (
+              <Col key={blog.slug} md='4'>
+                <CardItem {...blog} link={{ href: `/blogs/${blog.slug}` }} />
+              </Col>
+            )
+          )}
 
           <Col md='4'>
             <CardItem />

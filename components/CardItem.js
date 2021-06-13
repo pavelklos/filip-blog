@@ -6,7 +6,7 @@ import { urlFor } from "lib/api";
 export default function CardItem(props) {
   const { title, subtitle, slug, coverImage, date, author } = props;
   const { link } = props;
-  console.log(coverImage);
+  // console.log(coverImage);
 
   return (
     <Card className={`fj-card`}>
