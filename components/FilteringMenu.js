@@ -1,4 +1,7 @@
 // _rfc
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const LIST_VIEW_ICONS = ["list", "border-all"];
 
 export default function FilteringMenu(props) {
   const { filter, onChange } = props;
@@ -8,16 +11,19 @@ export default function FilteringMenu(props) {
 
   return (
     <div className='filtering-menu mb-2'>
-      <div
+      <FontAwesomeIcon
         onClick={() => {
           // alert("clicking!");
           // onChange();
           // +true = 1, +false = 0
           onChange("view", { list: +!filter.view.list });
         }}
+        icon={LIST_VIEW_ICONS[filter.view.list]}
+        size='lg' // 2x
+        className='clickable hoverable'
       >
         {list ? "Grid View" : "List View"} - List Filter: {filter.view.list}
-      </div>
+      </FontAwesomeIcon>
     </div>
   );
 }
