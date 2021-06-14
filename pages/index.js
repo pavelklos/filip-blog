@@ -49,7 +49,10 @@ export default function HomePage(props) {
           {blogs.map((blog) =>
             filter.view.list ? (
               <Col key={`${blog.slug}-list`} md='9'>
-                <CardListItem />
+                <CardListItem
+                  {...blog}
+                  link={{ href: `/blogs/${blog.slug}` }}
+                />
               </Col>
             ) : (
               <Col key={blog.slug} md='4'>
@@ -58,9 +61,9 @@ export default function HomePage(props) {
             )
           )}
 
-          <Col md='4'>
+          {/* <Col md='4'>
             <CardItem />
-          </Col>
+            </Col> */}
         </Row>
         {/* </div> */}
       </div>
