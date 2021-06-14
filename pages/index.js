@@ -1,5 +1,6 @@
 // _rfc
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 import { Row, Col } from "react-bootstrap";
 import PageLayout from "components/PageLayout";
 import AuthorIntro from "components/AuthorIntro";
@@ -7,6 +8,9 @@ import CardListItem from "components/CardListItem";
 import CardItem from "components/CardItem";
 import FilteringMenu from "components/FilteringMenu";
 import { getAllBlogs } from "lib/api";
+
+// [CLIENT FETCH] : useSWR()
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function HomePage(props) {
   // filter.view.list === 0 : CARD VIEW
@@ -17,9 +21,20 @@ export default function HomePage(props) {
   // console.log(blogs);
   // debugger;
   // console.log("Hello World");
+
+  // [CLIENT FETCH] : useEffect()
   useEffect(() => {
     // console.log(blogs);
-  }, []);
+    // async function fetchBlogs() {
+    //   const blogs = await getAllBlogs();
+    //   return blogs;
+    // }
+    // fetchBlogs();
+  }, []); // ON INITIAL RENDER
+
+  // [CLIENT FETCH] : useSWR()
+  const { data, error } = useSWR("/api/hello", fetcher);
+  // debugger;
 
   // const changeHandler = () => {
   //   setFilter({ view: { list: !filter.view.list } });
