@@ -11,6 +11,7 @@ import { getAllBlogs } from "lib/api";
 export default function HomePage(props) {
   // filter.view.list === 0 : CARD VIEW
   // filter.view.list === 1 : LIST VIEW
+  // const [filter, setFilter] = useState({ view: { list: false } });
   const [filter, setFilter] = useState({ view: { list: 0 } });
   const { blogs, randomNumber } = props;
   // console.log(blogs);
@@ -20,11 +21,21 @@ export default function HomePage(props) {
     // console.log(blogs);
   }, []);
 
+  // const changeHandler = () => {
+  //   setFilter({ view: { list: !filter.view.list } });
+  // };
+
   return (
     <PageLayout>
       <div className='blog-detail-page'>
         <AuthorIntro />
-        <FilteringMenu onChange={() => alert("alert from index.js")} />
+        {/* <FilteringMenu filter={filter} onChange={() => changeHandler()} /> */}
+        <FilteringMenu
+          filter={filter}
+          onChange={(option, value) =>
+            setFilter({ ...filter, [option]: value })
+          }
+        />
         <hr />
         <h1>{randomNumber}</h1>
         {/* {JSON.stringify(blogs)} */}
@@ -37,7 +48,7 @@ export default function HomePage(props) {
 
           {blogs.map((blog) =>
             filter.view.list ? (
-              <Col md='9'>
+              <Col key={`${blog.slug}-list`} md='9'>
                 <CardListItem />
               </Col>
             ) : (

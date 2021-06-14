@@ -38,7 +38,9 @@ export default function CardItem(props) {
               coverImage
                 ? // urlFor(coverImage).height(300).url()
                   // urlFor(coverImage).height(300).crop("center").fit("clip").url()
-                  urlFor(coverImage).url()
+                  // urlFor(coverImage).url() // ORIGINAL SIZE WITH HOTSPOT
+                  // .card-img { height: 15rem } = 15 x 16px = 240px
+                  urlFor(coverImage).height(300).url()
                 : "https://via.placeholder.com/250"
             }
             alt='Card image cap'
