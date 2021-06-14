@@ -1,6 +1,5 @@
 // _rfc
 import { useEffect, useState } from "react";
-import useSWR from "swr";
 import { Row, Col } from "react-bootstrap";
 import PageLayout from "components/PageLayout";
 import AuthorIntro from "components/AuthorIntro";
@@ -8,9 +7,7 @@ import CardListItem from "components/CardListItem";
 import CardItem from "components/CardItem";
 import FilteringMenu from "components/FilteringMenu";
 import { getAllBlogs } from "lib/api";
-
-// [CLIENT FETCH] : useSWR()
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import { useGetHello, useGetBlogs } from "actions";
 
 export default function HomePage(props) {
   // filter.view.list === 0 : CARD VIEW
@@ -32,8 +29,9 @@ export default function HomePage(props) {
     // fetchBlogs();
   }, []); // ON INITIAL RENDER
 
-  // [CLIENT FETCH] : useSWR()
-  const { data, error } = useSWR("/api/hello", fetcher);
+  // useSWR() FROM [index.js] actions
+  const { data: data1, error: error1 } = useGetHello();
+  const { data: data2, error: error2 } = useGetBlogs();
   // debugger;
 
   // const changeHandler = () => {
@@ -43,6 +41,10 @@ export default function HomePage(props) {
   return (
     <PageLayout>
       <div className='blog-detail-page'>
+        <h5 className='warning'>
+          {randomNumber} : {data1 ? JSON.stringify(data1) : "NO DATA1"} :{" "}
+          {data2 ? JSON.stringify(data2) : "NO DATA2"}
+        </h5>
         <AuthorIntro />
         {/* <FilteringMenu filter={filter} onChange={() => changeHandler()} /> */}
         <FilteringMenu
@@ -52,7 +54,6 @@ export default function HomePage(props) {
           }
         />
         <hr />
-        <h1>{randomNumber}</h1>
         {/* {JSON.stringify(blogs)} */}
         {/* className from props */}
         {/* <div className={`page-wrapper`}> */}
