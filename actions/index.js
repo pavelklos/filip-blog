@@ -9,6 +9,6 @@ export const useGetHello = () => useSWR("/api/hello", fetcher); // return { data
 
 // SANITY BLOGS ****************************************************************
 
-export const useGetBlogs = () => {
-  return useSWR(`/api/blogs`, fetcher); // return { data, error }
+export const useGetBlogs = (initialData) => {
+  return useSWR(`/api/blogs`, fetcher, { initialData }); // return { data, error }
 };

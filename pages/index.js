@@ -14,10 +14,15 @@ export default function HomePage(props) {
   // filter.view.list === 1 : LIST VIEW
   // const [filter, setFilter] = useState({ view: { list: false } });
   const [filter, setFilter] = useState({ view: { list: 0 } });
-  const { blogs, randomNumber } = props;
+  // const { blogs, randomNumber } = props;
+  const { blogs: initialData, randomNumber } = props;
   // console.log(blogs);
   // debugger;
   // console.log("Hello World");
+
+  // const changeHandler = () => {
+  //   setFilter({ view: { list: !filter.view.list } });
+  // };
 
   // [CLIENT FETCH] : useEffect()
   useEffect(() => {
@@ -30,20 +35,25 @@ export default function HomePage(props) {
   }, []); // ON INITIAL RENDER
 
   // useSWR() FROM [index.js] actions
-  const { data: data1, error: error1 } = useGetHello();
-  const { data: data2, error: error2 } = useGetBlogs();
+  const { data: dataHello, error: errorHello } = useGetHello();
+  // const { data: blogsData, error } = useGetBlogs();
+  const { data: blogs, error } = useGetBlogs(initialData);
+  // console.log("useGetBlogs()", data);
   // debugger;
 
-  // const changeHandler = () => {
-  //   setFilter({ view: { list: !filter.view.list } });
-  // };
+  // if (!blogsData) {
+  //   return (
+  //     <PageLayout>
+  //       <h3 className='warning'>loading Blogs data...</h3>
+  //     </PageLayout>
+  //   );
+  // }
 
   return (
     <PageLayout>
       <div className='blog-detail-page'>
         <h5 className='warning'>
-          {randomNumber} : {data1 ? JSON.stringify(data1) : "NO DATA1"} :{" "}
-          {data2 ? JSON.stringify(data2) : "NO DATA2"}
+          {randomNumber} : {dataHello ? JSON.stringify(dataHello) : "NO DATA1"}
         </h5>
         <AuthorIntro />
         {/* <FilteringMenu filter={filter} onChange={() => changeHandler()} /> */}
@@ -62,6 +72,7 @@ export default function HomePage(props) {
             <CardListItem />
           </Col> */}
 
+          {/* {blogsData.map((blog) => */}
           {blogs.map((blog) =>
             filter.view.list ? (
               <Col key={`${blog.slug}-list`} md='9'>
@@ -93,7 +104,7 @@ export default function HomePage(props) {
 export async function getStaticProps() {
   console.log("[index.js] Calling ... `getStaticProps() : ● (SSG)");
   const randomNumber = Math.random();
-  const blogs = await getAllBlogs();
+  const blogs = await getAllBlogs({ offset: 0 });
   return {
     props: {
       blogs,

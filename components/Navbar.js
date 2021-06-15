@@ -26,6 +26,11 @@ export default function BlogNavbar() {
           <Link href='/' passHref>
             <Nav.Link className='fj-navbar-item fj-navbar-link'>Home</Nav.Link>
           </Link>
+          <Link href='/api/blogs' passHref>
+            <Nav.Link className='fj-navbar-item fj-navbar-link' target='_blank'>
+              API
+            </Nav.Link>
+          </Link>
           <Nav.Link className='fj-navbar-item fj-navbar-link' href='#'>
             {process.env.NODE_ENV === "development" && (
               <span className='envDev'>✘ DEV</span>
