@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import PageLayout from "components/PageLayout";
 import AuthorIntro from "components/AuthorIntro";
-import CardListItem from "components/CardListItem";
-import CardItem from "components/CardItem";
+// import CardListItem from "components/CardListItem";
+// import CardItem from "components/CardItem";
 import FilteringMenu from "components/FilteringMenu";
 import { getAllBlogs } from "lib/api";
 import { useGetHello, useGetBlogs } from "actions";
+import { useGetBlogsPages } from "actions/pagination";
 
 export default function HomePage(props) {
   // filter.view.list === 0 : CARD VIEW
@@ -15,7 +16,8 @@ export default function HomePage(props) {
   // const [filter, setFilter] = useState({ view: { list: false } });
   const [filter, setFilter] = useState({ view: { list: 0 } });
   // const { blogs, randomNumber } = props;
-  const { blogs: initialData, randomNumber } = props;
+  // const { blogs: initialData, randomNumber } = props;
+  const { blogs, randomNumber } = props;
   // console.log(blogs);
   // debugger;
   // console.log("Hello World");
@@ -37,7 +39,7 @@ export default function HomePage(props) {
   // useSWR() FROM [index.js] actions
   const { data: dataHello, error: errorHello } = useGetHello();
   // const { data: blogsData, error } = useGetBlogs();
-  const { data: blogs, error } = useGetBlogs(initialData);
+  // const { data: blogs, error } = useGetBlogs(initialData);
   // console.log("useGetBlogs()", data);
   // debugger;
 
@@ -48,6 +50,14 @@ export default function HomePage(props) {
   //     </PageLayout>
   //   );
   // }
+
+  // [useSWRPages(....)] => useGetBlogsPages({..})
+  // WE GET 'pagesResponseInterface'
+  const { pages, isLoadingMore, isReachingEnd, loadMore } = useGetBlogsPages({
+    blogs,
+    filter,
+  });
+  // console.log({ pages, isLoadingMore, isReachingEnd, loadMore });
 
   return (
     <PageLayout>
@@ -67,13 +77,24 @@ export default function HomePage(props) {
         {/* {JSON.stringify(blogs)} */}
         {/* className from props */}
         {/* <div className={`page-wrapper`}> */}
+        <small>
+          <span className='warning'>useSWRPages() return</span>
+          <br />
+          pages.length: <span className='warning'>{pages.length}</span>{" "}
+          isLoadingMore:{" "}
+          <span className='warning'>{isLoadingMore.toString()}</span>{" "}
+          isReachingEnd:{" "}
+          <span className='warning'>{isReachingEnd.toString()}</span>{" "}
+        </small>
+        <hr />
         <Row className='mb-5'>
+          {pages}
           {/* <Col md='10'>
             <CardListItem />
           </Col> */}
 
           {/* {blogsData.map((blog) => */}
-          {blogs.map((blog) =>
+          {/* {blogs.map((blog) =>
             filter.view.list ? (
               <Col key={`${blog.slug}-list`} md='9'>
                 <CardListItem
@@ -86,7 +107,7 @@ export default function HomePage(props) {
                 <CardItem {...blog} link={{ href: `/blogs/${blog.slug}` }} />
               </Col>
             )
-          )}
+            )} */}
 
           {/* <Col md='4'>
             <CardItem />
