@@ -1,6 +1,6 @@
 // _rfc
 import { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import PageLayout from "components/PageLayout";
 import AuthorIntro from "components/AuthorIntro";
 // import CardListItem from "components/CardListItem";
@@ -53,6 +53,9 @@ export default function HomePage(props) {
 
   // [useSWRPages(....)] => useGetBlogsPages({..})
   // WE GET 'pagesResponseInterface'
+  // - isLoadingMore: is true whenever we are making request to fetch data
+  // - isReachingEnd: is true when we loaded all of the data, data is empty (empty array)
+  // - loadMore: to load more data
   const { pages, isLoadingMore, isReachingEnd, loadMore } = useGetBlogsPages({
     blogs,
     filter,
@@ -113,6 +116,20 @@ export default function HomePage(props) {
             <CardItem />
             </Col> */}
         </Row>
+        <div style={{ textAlign: "center" }}>
+          <Button
+            onClick={loadMore}
+            disabled={isLoadingMore || isReachingEnd}
+            size='lg'
+            variant='outline-secondary'
+          >
+            {isLoadingMore
+              ? "..."
+              : isReachingEnd
+              ? "No more blogs"
+              : "More Blogs"}
+          </Button>
+        </div>
         {/* </div> */}
       </div>
     </PageLayout>

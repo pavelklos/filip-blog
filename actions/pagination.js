@@ -15,7 +15,9 @@ export const useGetBlogsPages = ({ blogs: initialData, filter }) => {
 
     // 2.[pageFN] CALLBACK FUNCTION [FETCHING DATA]
     ({ offset, withSWR }) => {
+      // debugger;
       const { data: blogs } = withSWR(useGetBlogs(initialData));
+      // console.log("offset:", offset);
 
       if (!blogs) {
         return "Loading...";
@@ -40,6 +42,7 @@ export const useGetBlogsPages = ({ blogs: initialData, filter }) => {
     // - SWR: data you will get from 'withSWR' function
     // - index: number of current page
     (SWR, index) => {
+      // TODO: Compute offset here!
       return 0;
     },
 
