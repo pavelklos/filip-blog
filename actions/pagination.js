@@ -16,7 +16,9 @@ export const useGetBlogsPages = ({ blogs: initialData, filter }) => {
     // 2.[pageFN] CALLBACK FUNCTION [FETCHING DATA]
     ({ offset, withSWR }) => {
       // debugger;
-      const { data: blogs } = withSWR(useGetBlogs(initialData));
+      // const { data: blogs } = withSWR(useGetBlogs(initialData));
+      // const { data: blogs } = withSWR(useGetBlogs({ offset }, initialData));
+      const { data: blogs } = withSWR(useGetBlogs({ offset }));
       // console.log("offset:", offset);
 
       if (!blogs) {
@@ -42,8 +44,11 @@ export const useGetBlogsPages = ({ blogs: initialData, filter }) => {
     // - SWR: data you will get from 'withSWR' function
     // - index: number of current page
     (SWR, index) => {
-      // TODO: Compute offset here!
-      return 0;
+      if (SWR.data && SWR.data.length === 0) {
+        return null;
+      }
+      return (index + 1) * 3; // 3 blogs per page
+      // [More Blogs] -> [offset] null, 0, 3, 6, 9, 12, ...
     },
 
     // 4.[deps?] any[]
