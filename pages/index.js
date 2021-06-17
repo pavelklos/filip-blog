@@ -14,7 +14,8 @@ export default function HomePage(props) {
   // filter.view.list === 0 : CARD VIEW
   // filter.view.list === 1 : LIST VIEW
   // const [filter, setFilter] = useState({ view: { list: false } });
-  const [filter, setFilter] = useState({ view: { list: 0 } });
+  // const [filter, setFilter] = useState({ view: { list: 0 } });
+  const [filter, setFilter] = useState({ view: { list: 0 }, date: { asc: 0 } });
   // const { blogs, randomNumber } = props;
   // const { blogs: initialData, randomNumber } = props;
   const { blogs, randomNumber } = props;

@@ -1,8 +1,13 @@
 // Font Awesome
 import { library, config } from "@fortawesome/fontawesome-svg-core";
-import { faBorderAll, faList } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBorderAll,
+  faList,
+  faSortNumericDown,
+  faSortNumericUp,
+} from "@fortawesome/free-solid-svg-icons";
 config.autoAddCss = false;
-library.add(faBorderAll, faList);
+library.add(faBorderAll, faList, faSortNumericDown, faSortNumericUp);
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
