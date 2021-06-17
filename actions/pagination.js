@@ -1,4 +1,6 @@
 // _rafc
+import { useEffect } from "react";
+
 import { useSWRPages } from "swr";
 import { useGetBlogs } from "actions";
 
@@ -9,6 +11,11 @@ import CardItem from "components/CardItem";
 // HOOK FUNCTION : use..
 // export const useGetBlogsPages = ({ blogs: initialData, filter }) => {
 export const useGetBlogsPages = ({ blogs, filter }) => {
+  // IN BROWSER ENVIRONMENT
+  useEffect(() => {
+    window.__pagination__init = true;
+  }, []); // ON INITIAL RENDER
+
   // [useSWRPages(...) 4 PARAMS (pageKey, pageFN, SWRToOffset, deps?)
   return useSWRPages(
     // 1.[pageKey] STRING
@@ -18,6 +25,11 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
     ({ offset, withSWR }) => {
       let initialData = !offset && blogs;
       // debugger;
+
+      if (typeof window !== "undefined" && window.__pagination__init) {
+        initialData = null;
+      }
+
       // const { data: blogs } = withSWR(useGetBlogs(initialData));
       // const { data: blogs } = withSWR(useGetBlogs({ offset }, initialData));
       // const { data: blogs } = withSWR(useGetBlogs({ offset }));
