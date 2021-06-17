@@ -143,7 +143,8 @@ export default function HomePage(props) {
 export async function getStaticProps() {
   console.log("[index.js] Calling ... `getStaticProps() : ● (SSG)");
   const randomNumber = Math.random();
-  const blogs = await getAllBlogs({ offset: 0 });
+  // const blogs = await getAllBlogs({ offset: 0 });
+  const blogs = await getAllBlogs({ offset: 0, date: "desc" });
   return {
     props: {
       blogs,

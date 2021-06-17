@@ -21,8 +21,11 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
       // const { data: blogs } = withSWR(useGetBlogs(initialData));
       // const { data: blogs } = withSWR(useGetBlogs({ offset }, initialData));
       // const { data: blogs } = withSWR(useGetBlogs({ offset }));
+      // const { data: paginatedBlogs } = withSWR(
+      //   useGetBlogs({ offset }, initialData)
+      // );
       const { data: paginatedBlogs } = withSWR(
-        useGetBlogs({ offset }, initialData)
+        useGetBlogs({ offset, filter }, initialData)
       );
       // console.log("offset:", offset);
 
