@@ -7,7 +7,8 @@ import CardListItem from "components/CardListItem";
 import CardItem from "components/CardItem";
 
 // HOOK FUNCTION : use..
-export const useGetBlogsPages = ({ blogs: initialData, filter }) => {
+// export const useGetBlogsPages = ({ blogs: initialData, filter }) => {
+export const useGetBlogsPages = ({ blogs, filter }) => {
   // [useSWRPages(...) 4 PARAMS (pageKey, pageFN, SWRToOffset, deps?)
   return useSWRPages(
     // 1.[pageKey] STRING
@@ -15,17 +16,21 @@ export const useGetBlogsPages = ({ blogs: initialData, filter }) => {
 
     // 2.[pageFN] CALLBACK FUNCTION [FETCHING DATA]
     ({ offset, withSWR }) => {
+      let initialData = !offset && blogs;
       // debugger;
       // const { data: blogs } = withSWR(useGetBlogs(initialData));
       // const { data: blogs } = withSWR(useGetBlogs({ offset }, initialData));
-      const { data: blogs } = withSWR(useGetBlogs({ offset }));
+      // const { data: blogs } = withSWR(useGetBlogs({ offset }));
+      const { data: paginatedBlogs } = withSWR(
+        useGetBlogs({ offset }, initialData)
+      );
       // console.log("offset:", offset);
 
-      if (!blogs) {
+      if (!paginatedBlogs) {
         return "Loading...";
       }
 
-      return blogs.map((blog) =>
+      return paginatedBlogs.map((blog) =>
         filter.view.list ? (
           <Col key={`${blog.slug}-list`} md='9'>
             <CardListItem {...blog} link={{ href: `/blogs/${blog.slug}` }} />
