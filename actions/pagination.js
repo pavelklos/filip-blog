@@ -8,6 +8,7 @@ import { Col } from "react-bootstrap";
 import CardListItem from "components/CardListItem";
 import CardItem from "components/CardItem";
 import CardItemBlank from "components/CardItemBlank";
+import CardListItemBlank from "components/CardListItemBlank";
 
 // HOOK FUNCTION : use..
 // export const useGetBlogsPages = ({ blogs: initialData, filter }) => {
@@ -47,11 +48,17 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
         // return 3 blank items (placeholder)
         return Array(3)
           .fill(0)
-          .map((_, index) => (
-            <Col key={index} md='4'>
-              <CardItemBlank />
-            </Col>
-          ));
+          .map((_, index) =>
+            filter.view.list ? (
+              <Col key={`${index}-list`} md='9'>
+                <CardListItemBlank />
+              </Col>
+            ) : (
+              <Col key={index} md='4'>
+                <CardItemBlank />
+              </Col>
+            )
+          );
       }
 
       return paginatedBlogs.map((blog) =>
@@ -76,7 +83,7 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
       if (SWR.data && SWR.data.length === 0) {
         return null;
       }
-      return (index + 1) * 3; // 3 blogs per page
+      return (index + 1) * 6; // 3 blogs per page
       // [More Blogs] -> [offset] null, 0, 3, 6, 9, 12, ...
     },
 

@@ -1,5 +1,6 @@
 // _rfc
+import CardListItem from "./CardListItem";
 
 export default function CardListItemBlank() {
-  return <div></div>;
+  return <CardListItem mode='placeholder' />;
 }
