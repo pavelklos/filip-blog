@@ -6,15 +6,22 @@ import { urlFor } from "lib/api";
 export default function CardItem(props) {
   const { title, subtitle, slug, coverImage, date, author } = props;
   const { link } = props;
+  const { mode = "normal" } = props;
+  // const { mode = "placeholder" } = props;
   // console.log(coverImage);
+  // console.log(mode);
 
   return (
-    <Card className={`fj-card`}>
+    <Card className={`fj-card ${mode}`}>
       <div className='card-body-wrapper'>
         <Card.Header className='d-flex flex-row'>
           <img
             // src={"https://via.placeholder.com/150"}
-            src={author ? author.avatar : "https://via.placeholder.com/150"}
+            src={
+              mode === "normal" && author
+                ? author.avatar
+                : "https://via.placeholder.com/150"
+            }
             className='rounded-circle mr-3'
             height='50px'
             width='50px'
@@ -22,33 +29,41 @@ export default function CardItem(props) {
           />
           <div>
             <Card.Title className='font-weight-bold mb-1'>
-              {author ? author.name : "Placeholder Author"}
+              {mode === "normal" && author ? author.name : "Placeholder Author"}
             </Card.Title>
             <Card.Text className='card-date'>
-              {date
+              {mode === "normal" && date
                 ? new Date(date).toLocaleString("cs-CZ", {})
-                : "Placeholder date"}
+                : "Placeholder Date"}
             </Card.Text>
           </div>
         </Card.Header>
         <div className='view overlay'>
-          <Card.Img
-            // src='https://via.placeholder.com/250'
-            src={
-              coverImage
-                ? // urlFor(coverImage).height(300).url()
-                  // urlFor(coverImage).height(300).crop("center").fit("clip").url()
-                  // urlFor(coverImage).url() // ORIGINAL SIZE WITH HOTSPOT
-                  // .card-img { height: 15rem } = 15 x 16px = 240px
-                  urlFor(coverImage).height(300).url()
-                : "https://via.placeholder.com/250"
-            }
-            alt='Card image cap'
-          />
+          {mode === "placeholder" ? (
+            <div className='image-placeholder' />
+          ) : (
+            <Card.Img
+              // src='https://via.placeholder.com/250'
+              src={
+                coverImage
+                  ? // urlFor(coverImage).height(300).url()
+                    // urlFor(coverImage).height(300).crop("center").fit("clip").url()
+                    // urlFor(coverImage).url() // ORIGINAL SIZE WITH HOTSPOT
+                    // .card-img { height: 15rem } = 15 x 16px = 240px
+                    urlFor(coverImage).height(300).url()
+                  : "https://via.placeholder.com/250"
+              }
+              alt='Card image cap'
+            />
+          )}
         </div>
         <Card.Body>
-          <Card.Title className='card-main-title'>{title}</Card.Title>
-          <Card.Text>{subtitle}</Card.Text>
+          <Card.Title className='card-main-title'>
+            {mode === "normal" && title ? title : "Placeholder Title"}
+          </Card.Title>
+          <Card.Text>
+            {mode === "normal" && subtitle ? subtitle : "Placeholder Subtitle"}
+          </Card.Text>
         </Card.Body>
       </div>
       {/* <a href={`/blogs/${slug}`} className='card-button'>

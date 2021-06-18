@@ -7,6 +7,7 @@ import { useGetBlogs } from "actions";
 import { Col } from "react-bootstrap";
 import CardListItem from "components/CardListItem";
 import CardItem from "components/CardItem";
+import CardItemBlank from "components/CardItemBlank";
 
 // HOOK FUNCTION : use..
 // export const useGetBlogsPages = ({ blogs: initialData, filter }) => {
@@ -42,7 +43,15 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
       // console.log("offset:", offset);
 
       if (!paginatedBlogs) {
-        return "Loading...";
+        // return "Loading...";
+        // return 3 blank items (placeholder)
+        return Array(3)
+          .fill(0)
+          .map((_, index) => (
+            <Col key={index} md='4'>
+              <CardItemBlank />
+            </Col>
+          ));
       }
 
       return paginatedBlogs.map((blog) =>
