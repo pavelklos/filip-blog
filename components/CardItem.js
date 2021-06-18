@@ -2,6 +2,8 @@
 import { Card } from "react-bootstrap";
 import Link from "next/link";
 import { urlFor } from "lib/api";
+import moment from "moment";
+moment.locale("cs");
 
 export default function CardItem(props) {
   const { title, subtitle, slug, coverImage, date, author } = props;
@@ -13,7 +15,8 @@ export default function CardItem(props) {
 
   return (
     <Card className={`fj-card ${mode}`}>
-      <div className='card-body-wrapper'>
+      {/* <div className='card-body-wrapper'> */}
+      <div className={`card-body-wrapper ${!coverImage ? "no-image" : ""}`}>
         <Card.Header className='d-flex flex-row'>
           <img
             // src={"https://via.placeholder.com/150"}
@@ -33,7 +36,8 @@ export default function CardItem(props) {
             </Card.Title>
             <Card.Text className='card-date'>
               {mode === "normal" && date
-                ? new Date(date).toLocaleString("cs-CZ", {})
+                ? // ? new Date(date).toLocaleString("cs-CZ", {})
+                  moment(date).format("LLL")
                 : "Placeholder Date"}
             </Card.Text>
           </div>

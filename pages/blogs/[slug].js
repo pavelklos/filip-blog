@@ -40,13 +40,14 @@ export default function BlogDetailPage(props) {
         <Col md={{ span: 10, offset: 1 }}>
           <BlogHeader {...blog} />
           <hr />
-          <BlogContent content={blog.content} />
+          {blog.content && <BlogContent content={blog.content} />}
         </Col>
       </Row>
     </PageLayout>
   );
 }
 
+// TODO: Introduce fallback
 export async function getStaticPaths() {
   console.log(
     "[[slug].js] Calling ... `getStaticPaths() : Gettings paths for every page"

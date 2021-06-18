@@ -1,5 +1,7 @@
 // _rfc
 import { urlFor } from "lib/api";
+import moment from "moment";
+moment.locale("cs");
 
 export default function BlogHeader({
   title,
@@ -22,7 +24,8 @@ export default function BlogHeader({
           alt='avatar'
         />
         {author?.name}
-        {", "} {new Date(date).toLocaleString("cs-CZ", {})}
+        {/* {", "} {new Date(date).toLocaleString("cs-CZ", {})} */}
+        {", "} {moment(date).format("LLL")}
       </p>
       <h1 className='font-weight-bold blog-detail-header-title mb-0'>
         {title}

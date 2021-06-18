@@ -2,6 +2,8 @@
 import { Card } from "react-bootstrap";
 import Link from "next/link";
 import { urlFor } from "lib/api";
+import moment from "moment";
+moment.locale("cs");
 
 export default function CardListItem(props) {
   const { title, subtitle, slug, coverImage, date, author } = props;
@@ -33,7 +35,8 @@ export default function CardListItem(props) {
             </Card.Title>
             <Card.Text className='card-date'>
               {mode === "normal" && date
-                ? new Date(date).toLocaleString("cs-CZ", {})
+                ? // new Date(date).toLocaleString("cs-CZ", {})
+                  moment(date).format("LLL")
                 : "Placeholder Date"}
             </Card.Text>
           </div>
