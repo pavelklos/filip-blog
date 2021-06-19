@@ -1,18 +1,26 @@
 // _rfc
 import { Navbar, Nav } from "react-bootstrap";
 import Link from "next/link";
-import { useTheme } from "providers/ThemeProvider";
-import { themes } from "context/ThemeContext";
+// import { useTheme } from "providers/ThemeProvider";
+// import { themes } from "context/ThemeContext";
 
-export default function BlogNavbar() {
-  const { theme, toggleTheme } = useTheme();
+export default function BlogNavbar(props) {
+  // const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = props;
   // console.log(theme);
 
   return (
-    <Navbar className='fj-navbar fj-nav-base' bg='transparent' expand='lg'>
+    <Navbar
+      variant={theme.type}
+      className='fj-navbar fj-nav-base'
+      bg='transparent'
+      expand='lg'
+    >
       <Navbar.Brand className='fj-navbar-brand'>
         {/* <a href='/'>Filip-Jerga</a> */}
-        <Link href='/'>Filip-Jerga</Link>
+        <Link href='/'>
+          <a style={{ color: theme.fontColor }}>Filip-Jerga</a>
+        </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>

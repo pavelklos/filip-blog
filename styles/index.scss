@@ -160,7 +160,7 @@ body {
       font-weight: bold;
       // ADDED
       a {
-        color: black;
+        // color: black;
         font-weight: 900;
       }
     }
@@ -277,36 +277,6 @@ body {
   }
 }
 
-.dark {
-  .card.fj-card {
-    background-color: #232129;
-    transition: color 0s ease-out 0s, background 0.2s ease-out 0s;
-    .card-body-wrapper {
-      background-color: #232129;
-      transition: color 0s ease-out 0s, background 0.2s ease-out 0s;
-    }
-
-    .card-button {
-      background-color: #9b5f5f;
-    }
-  }
-
-  .fj-navbar.fj-nav-base {
-    width: 100%;
-    padding: 20px 0px;
-
-    .fj-navbar {
-      &-brand {
-        color: #ffffff;
-      }
-
-      &-link {
-        color: #ffffff;
-      }
-    }
-  }
-}
-
 .day-night-toggle.react-toggle {
   &.react-toggle--checked:hover {
     &:not(.react-toggle--disabled) .react-toggle-track {
@@ -383,4 +353,35 @@ code {
   width: 100%;
   height: 15rem;
   object-fit: cover; // contain
+}
+
+// THEME (LIGHT-DARK)
+.dark {
+  .card.fj-card {
+    background-color: #232129;
+    transition: color 0s ease-out 0s, background 0.2s ease-out 0s;
+    .card-body-wrapper {
+      background-color: #232129;
+      transition: color 0s ease-out 0s, background 0.2s ease-out 0s;
+    }
+
+    .card-button {
+      background-color: #9b5f5f;
+    }
+  }
+
+  .fj-navbar.fj-nav-base {
+    width: 100%;
+    padding: 20px 0px;
+
+    .fj-navbar {
+      &-brand {
+        // color: #ffffff;
+      }
+
+      &-link {
+        color: #ffffff;
+      }
+    }
+  }
 }
