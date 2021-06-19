@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { getAllBlogs } from "lib/api";
+import { getPaginatedBlogs } from "lib/api";
 
 export default async function getBlogs(req, res) {
   const offset = parseInt(req.query.offset || 0, 10);
@@ -9,7 +10,8 @@ export default async function getBlogs(req, res) {
   // const data = await getAllBlogs(); // data = blogs array
   // const data = await getAllBlogs({ offset: 0 }); // data = blogs array
   // const data = await getAllBlogs({ offset });
-  const data = await getAllBlogs({ offset, date });
+  // const data = await getAllBlogs({ offset, date });
+  const data = await getPaginatedBlogs({ offset, date });
 
   res.status(200).json(data);
 }

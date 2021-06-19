@@ -7,6 +7,7 @@ import AuthorIntro from "components/AuthorIntro";
 // import CardItem from "components/CardItem";
 import FilteringMenu from "components/FilteringMenu";
 import { getAllBlogs } from "lib/api";
+import { getPaginatedBlogs } from "lib/api";
 import { useGetHello, useGetBlogs } from "actions";
 import { useGetBlogsPages } from "actions/pagination";
 
@@ -144,7 +145,8 @@ export async function getStaticProps() {
   console.log("[index.js] Calling ... `getStaticProps() : ● (SSG)");
   const randomNumber = Math.random();
   // const blogs = await getAllBlogs({ offset: 0 });
-  const blogs = await getAllBlogs({ offset: 0, date: "desc" });
+  // const blogs = await getAllBlogs({ offset: 0, date: "desc" });
+  const blogs = await getPaginatedBlogs({ offset: 0, date: "desc" });
   return {
     props: {
       blogs,

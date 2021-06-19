@@ -1,9 +1,10 @@
 // _rfc
 import { useRouter } from "next/router";
+import ErrorPage from "next/error";
 import PageLayout from "components/PageLayout";
 import BlogHeader from "components/BlogHeader";
 import BlogContent from "components/BlogContent";
-import { getAllBlogSlugs, getBlogBySlug2 } from "lib/api";
+import { getAllBlogs, getAllBlogSlugs, getBlogBySlug2 } from "lib/api";
 import { Row, Col } from "react-bootstrap";
 
 // import BlockContent from "@sanity/block-content-to-react";
@@ -34,6 +35,15 @@ export default function BlogDetailPage(props) {
   // console.log(blog);
   // console.log("Displaying page for slug:", blog?.slug);
 
+  if (!router.isFallback && !blog?.slug) {
+    return <ErrorPage statusCode='404' />;
+  }
+
+  if (router.isFallback) {
+    console.log("Loading fallback page");
+    return <PageLayout className='blog-detail-page'>Loading...</PageLayout>;
+  }
+
   return (
     <PageLayout className='blog-detail-page'>
       <Row>
@@ -56,6 +66,8 @@ export async function getStaticPaths() {
   // console.log("slugs:", slugs);
   // const paths = slugs?.map((s) => ({ params: { slug: s.slug } }));
   // console.log("paths:", paths);
+  const blogs = await getAllBlogs();
+  const paths = blogs?.map((b) => ({ params: { slug: b.slug } }));
 
   return {
     // paths: [
@@ -65,23 +77,32 @@ export async function getStaticPaths() {
     // ],
     // paths: paths,
     // paths,
-    paths: slugs?.map((s) => ({ params: { slug: s.slug } })),
-    fallback: false, // false -> 404
+    // paths: slugs?.map((s) => ({ params: { slug: s.slug } })),
+    // fallback: false, // false -> 404
+    paths,
+    fallback: true,
   };
 }
 
-export async function getStaticProps(context) {
-  console.log("[[slug].js] Calling ... `getStaticProps() : ● (SSG) DYNAMIC");
-  const { params } = context;
-  const { slug } = params;
+// export async function getStaticProps(context) {
+//   console.log("[[slug].js] Calling ... `getStaticProps() : ● (SSG) DYNAMIC");
+//   const { params } = context;
+//   const { slug } = params;
 
-  const blog = await getBlogBySlug2(slug);
-  console.log("Fetching blog by slug:", slug);
+//   const blog = await getBlogBySlug2(slug);
+//   console.log("Fetching blog by slug:", slug);
 
+//   return {
+//     props: {
+//       blog,
+//     },
+//   };
+// }
+
+export async function getStaticProps({ params }) {
+  const blog = await getBlogBySlug2(params.slug);
   return {
-    props: {
-      blog,
-    },
+    props: { blog },
   };
 }
 
