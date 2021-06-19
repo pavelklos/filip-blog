@@ -1,8 +1,13 @@
 // _rfc
 import { Navbar, Nav } from "react-bootstrap";
 import Link from "next/link";
+import { useTheme } from "providers/ThemeProvider";
+import { themes } from "context/ThemeContext";
 
 export default function BlogNavbar() {
+  const { theme, toggleTheme } = useTheme();
+  // console.log(theme);
+
   return (
     <Navbar className='fj-navbar fj-nav-base' bg='transparent' expand='lg'>
       <Navbar.Brand className='fj-navbar-brand'>
@@ -39,6 +44,9 @@ export default function BlogNavbar() {
               <span className='envProd'>✔ PROD</span>
             )}
           </Nav.Link>
+          <button className={`btn btn-${theme.type}`} onClick={toggleTheme}>
+            {theme.type.toUpperCase()}
+          </button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

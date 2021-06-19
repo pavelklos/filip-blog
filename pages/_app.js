@@ -1,3 +1,6 @@
+// Theme Provider
+import ThemeProvider from "providers/ThemeProvider";
+
 // Font Awesome
 import { library, config } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -16,7 +19,11 @@ import "highlight.js/styles/darcula.css";
 import "styles/index.scss";
 import "styles/test.scss";
 
-const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />;
+const MyApp = ({ Component, pageProps }) => (
+  <ThemeProvider>
+    <Component {...pageProps} />
+  </ThemeProvider>
+);
 
 export default MyApp;
 
