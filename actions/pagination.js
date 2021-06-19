@@ -64,11 +64,19 @@ export const useGetBlogsPages = ({ blogs, filter }) => {
       return paginatedBlogs.map((blog) =>
         filter.view.list ? (
           <Col key={`${blog.slug}-list`} md='9'>
-            <CardListItem {...blog} link={{ href: `/blogs/${blog.slug}` }} />
+            {/* <CardListItem {...blog} link={{ href: `/blogs/${blog.slug}` }} /> */}
+            <CardListItem
+              {...blog}
+              link={{ href: "/blogs/[slug]", as: `/blogs/${blog.slug}` }}
+            />
           </Col>
         ) : (
           <Col key={blog.slug} md='4'>
-            <CardItem {...blog} link={{ href: `/blogs/${blog.slug}` }} />
+            {/* <CardItem {...blog} link={{ href: `/blogs/${blog.slug}` }} /> */}
+            <CardItem
+              {...blog}
+              link={{ href: "/blogs/[slug]", as: `/blogs/${blog.slug}` }}
+            />
           </Col>
         )
       );
