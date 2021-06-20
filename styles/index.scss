@@ -284,6 +284,10 @@ body {
     }
   }
 
+  .react-toggle-thumb {
+    border-color: black;
+  }
+
   .react-toggle-track {
     background-color: black;
     &:hover {
@@ -384,4 +388,9 @@ code {
       }
     }
   }
+}
+
+// TOGGLE : ADDED
+label.toggle {
+  margin: 0.5rem 0;
 }

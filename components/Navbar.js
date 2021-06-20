@@ -1,6 +1,7 @@
 // _rfc
 import { Navbar, Nav } from "react-bootstrap";
 import Link from "next/link";
+import ThemeToggle from "components/ThemeToggle";
 // import { useTheme } from "providers/ThemeProvider";
 // import { themes } from "context/ThemeContext";
 
@@ -52,9 +53,11 @@ export default function BlogNavbar(props) {
               <span className='envProd'>✔ PROD</span>
             )}
           </Nav.Link>
-          <button className={`btn btn-${theme.type}`} onClick={toggleTheme}>
+          {/* <button className={`btn btn-${theme.type}`} onClick={toggleTheme}>
             {theme.type.toUpperCase()}
-          </button>
+            </button> */}
+          {/* <div></div> */}
+          <ThemeToggle onChange={toggleTheme} checked={theme.type === "dark"} />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
