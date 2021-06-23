@@ -1,11 +1,12 @@
 // _rfc
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
+import { Row, Col } from "react-bootstrap";
+import { getAllBlogs, getAllBlogSlugs, getBlogBySlug2 } from "lib/api";
 import PageLayout from "components/PageLayout";
 import BlogHeader from "components/BlogHeader";
 import BlogContent from "components/BlogContent";
-import { getAllBlogs, getAllBlogSlugs, getBlogBySlug2 } from "lib/api";
-import { Row, Col } from "react-bootstrap";
+import PreviewAlert from "components/PreviewAlert";
 
 // import BlockContent from "@sanity/block-content-to-react";
 // // const serializers = {
@@ -30,7 +31,7 @@ export default function BlogDetailPage(props) {
   const router = useRouter();
   const { query } = router;
   const { slug } = query;
-  const { blog } = props;
+  const { blog, preview } = props;
   // debugger;
   // console.log(blog);
   // console.log("Displaying page for slug:", blog?.slug);
@@ -48,6 +49,7 @@ export default function BlogDetailPage(props) {
     <PageLayout className='blog-detail-page'>
       <Row>
         <Col md={{ span: 10, offset: 1 }}>
+          {preview && <PreviewAlert />}
           <BlogHeader {...blog} />
           <hr />
           {blog.content && <BlogContent content={blog.content} />}
@@ -99,10 +101,14 @@ export async function getStaticPaths() {
 //   };
 // }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, preview = false, previewData }) {
+  // console.log("preview:", preview);
+  // console.log("previewData:", previewData);
+  // TODO: pass 'preview' to getBlogBySlug2(.) anf fetch draft blog (not published)
+
   const blog = await getBlogBySlug2(params.slug);
   return {
-    props: { blog },
+    props: { blog, preview },
   };
 }
 

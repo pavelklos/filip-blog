@@ -10,6 +10,7 @@ import { getAllBlogs } from "lib/api";
 import { getPaginatedBlogs } from "lib/api";
 import { useGetHello, useGetBlogs } from "actions";
 import { useGetBlogsPages } from "actions/pagination";
+import PreviewAlert from "components/PreviewAlert";
 
 export default function HomePage(props) {
   // filter.view.list === 0 : CARD VIEW
@@ -19,7 +20,7 @@ export default function HomePage(props) {
   const [filter, setFilter] = useState({ view: { list: 0 }, date: { asc: 0 } });
   // const { blogs, randomNumber } = props;
   // const { blogs: initialData, randomNumber } = props;
-  const { blogs, randomNumber } = props;
+  const { blogs, randomNumber, preview } = props;
   // console.log(blogs);
   // debugger;
   // console.log("Hello World");
@@ -70,6 +71,7 @@ export default function HomePage(props) {
         <h5 className='warning'>
           {randomNumber} : {dataHello ? JSON.stringify(dataHello) : "NO DATA1"}
         </h5>
+        {preview && <PreviewAlert />}
         <AuthorIntro />
         {/* <FilteringMenu filter={filter} onChange={() => changeHandler()} /> */}
         <FilteringMenu
@@ -141,7 +143,7 @@ export default function HomePage(props) {
 // This function is called during the build (build time)
 // Provides props to your page
 // It will create static page
-export async function getStaticProps() {
+export async function getStaticProps({ preview = false }) {
   console.log("[index.js] Calling ... `getStaticProps() : ● (SSG)");
   const randomNumber = Math.random();
   // const blogs = await getAllBlogs({ offset: 0 });
@@ -151,6 +153,7 @@ export async function getStaticProps() {
     props: {
       blogs,
       randomNumber,
+      preview,
     },
   };
 }

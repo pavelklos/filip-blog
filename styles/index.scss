@@ -332,9 +332,17 @@ body {
   // color: greenyellow;
   color: green;
 }
-.warning {
+.warning,
+.preview {
   color: crimson;
   font-weight: 700;
+}
+.preview {
+  background: yellow;
+  padding: 0.5rem;
+  border: 2px solid;
+  text-align: center;
+  font-size: 1.25em;
 }
 // ADDED : Portable Text 'block-content-to-react'
 figure img,
