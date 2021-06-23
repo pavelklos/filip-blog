@@ -106,7 +106,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   // console.log("previewData:", previewData);
   // TODO: pass 'preview' to getBlogBySlug2(.) anf fetch draft blog (not published)
 
-  const blog = await getBlogBySlug2(params.slug);
+  const blog = await getBlogBySlug2(params.slug, preview);
   return {
     props: { blog, preview },
   };
