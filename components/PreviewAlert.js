@@ -7,8 +7,8 @@ export default function PreviewAlert() {
       <div className='preview'>
         PREVIEW MODE
         <br />
-        {/* TODO: This will lead me to API route that will remove preview cookies */}
-        <Alert.Link href='#'>Leave preview mode</Alert.Link>
+        {/* This will lead me to API route that will remove preview cookies */}
+        <Alert.Link href='/api/exit-preview'>Leave preview mode</Alert.Link>
       </div>
     </Alert>
   );
