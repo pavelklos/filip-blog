@@ -152,9 +152,10 @@ export async function getStaticProps({ preview = false }) {
   return {
     props: {
       blogs,
-      randomNumber,
       preview,
+      randomNumber,
     },
+    unstable_revalidate: 1, // 1 sec
   };
 }
 
