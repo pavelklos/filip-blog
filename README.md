@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-1. create .env.local file in root folder with values of:
+1. Create `.env.local` file in root folder with values of:
 
 ```javascript
 SANITY_PROJECT_ID = // from Sanity Dashboard
