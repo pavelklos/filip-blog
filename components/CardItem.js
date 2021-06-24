@@ -55,7 +55,8 @@ export default function CardItem(props) {
                     // urlFor(coverImage).url() // ORIGINAL SIZE WITH HOTSPOT
                     // .card-img { height: 15rem } = 15 x 16px = 240px
                     urlFor(coverImage).height(300).url()
-                  : "https://via.placeholder.com/250"
+                  : // urlFor(coverImage).height(300).crop("center").fit("clip").url()
+                    "https://via.placeholder.com/250"
               }
               alt='Card image cap'
             />
@@ -63,10 +64,20 @@ export default function CardItem(props) {
         </div>
         <Card.Body>
           <Card.Title className='card-main-title'>
-            {mode === "normal" && title ? title : "Placeholder Title"}
+            {/* {mode === "normal" && title ? title : "Placeholder Title"} */}
+            {mode === "normal" && title
+              ? title.length > 40
+                ? title.substr(0, 40) + "..."
+                : title
+              : "Placeholder Title"}
           </Card.Title>
           <Card.Text>
-            {mode === "normal" && subtitle ? subtitle : "Placeholder Subtitle"}
+            {/* {mode === "normal" && subtitle ? subtitle : "Placeholder Subtitle"} */}
+            {mode === "normal" && subtitle
+              ? subtitle.length > 40
+                ? subtitle.substr(0, 40) + "..."
+                : subtitle
+              : "Placeholder Subtitle"}
           </Card.Text>
         </Card.Body>
       </div>

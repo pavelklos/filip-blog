@@ -63,6 +63,7 @@ body {
 
   .card-main-title {
     font-size: 22px;
+    height: 60px;
   }
 
   .card-header {
@@ -253,6 +254,9 @@ body {
     float: right;
     margin-left: 30px;
   }
+  > img {
+    max-width: 100%;
+  }
 }
 .image-alt {
   margin-top: 3px;
@@ -401,4 +405,34 @@ code {
 // TOGGLE : ADDED
 label.toggle {
   margin: 0.5rem 0;
+}
+
+// ADDED FROM RESOURCES
+.view.overlay {
+  // height: 150px;
+  height: 15rem;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0;
+
+  > img {
+    object-fit: cover;
+    height: 100%;
+  }
+}
+
+blockquote {
+  position: relative;
+  // color: #999;
+  color: rgba(220, 20, 60, 0.75);
+  font-size: 1.25em;
+  font-family: Georgia, Times New Roman, Times, serif;
+  font-style: italic;
+  margin: 0;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-origin: border-box;
+  background-size: 2em;
 }

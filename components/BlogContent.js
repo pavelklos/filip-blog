@@ -42,7 +42,8 @@ const serializers = {
         <div className='clearfix'>
           {/* <div className='blog-image' style={{ ...style }}> */}
           <div className={`blog-image blog-image-${position}`}>
-            <img src={urlFor(asset).height(300).fit("max").url()} />
+            {/* <img src={urlFor(asset).height(300).fit("max").url()} /> */}
+            <img src={urlFor(asset).height(600).fit("max").url()} />
             <div className='image-alt'>{alt}</div>
           </div>
         </div>
