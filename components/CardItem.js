@@ -37,7 +37,7 @@ export default function CardItem(props) {
             <Card.Text className='card-date'>
               {mode === "normal" && date
                 ? // moment(date).format("LLL")
-                  new Date(date).toLocaleString("cs-CZ", {})
+                  new Date(date).toLocaleDateString("cs-CZ", {})
                 : "Placeholder Date"}
             </Card.Text>
           </div>

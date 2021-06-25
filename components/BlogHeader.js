@@ -24,7 +24,7 @@ export default function BlogHeader({
           alt='avatar'
         />
         {author?.name}
-        {", "} {new Date(date).toLocaleString("cs-CZ", {})}
+        {", "} {new Date(date).toLocaleDateString("cs-CZ", {})}
         {/* {", "} {moment(date).format("LLL")} */}
       </p>
       <h1 className='font-weight-bold blog-detail-header-title mb-0'>
