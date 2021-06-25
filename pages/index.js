@@ -9,7 +9,8 @@ import FilteringMenu from "components/FilteringMenu";
 import { getAllBlogs } from "lib/api";
 import { getPaginatedBlogs } from "lib/api";
 import { useGetHello, useGetBlogs } from "actions";
-import { useGetBlogsPages } from "actions/pagination";
+// import { useGetBlogsPages } from "actions/pagination";
+import { useGetBlogsPages } from "actions/pagination2";
 import PreviewAlert from "components/PreviewAlert";
 
 export default function HomePage(props) {

@@ -20,7 +20,8 @@ export default async function enablePreview(req, res) {
   }
 
   // GET BLOG BY SLUG
-  const blog = await getBlogBySlug2(slug);
+  // const blog = await getBlogBySlug2(slug);
+  const blog = await getBlogBySlug2(slug, true);
 
   // CHECK BLOG
   if (!blog) {
