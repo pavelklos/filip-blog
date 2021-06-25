@@ -21,6 +21,8 @@ export default async function enablePreview(req, res) {
 
   // GET BLOG BY SLUG
   // const blog = await getBlogBySlug2(slug);
+  // [Preview fix] FOR PREVIEW MODE
+  // - NO MESSAGE 'Invalid slug: ...' FOR UNPUBLISHED CHANGES OF BLOG
   const blog = await getBlogBySlug2(slug, true);
 
   // CHECK BLOG
